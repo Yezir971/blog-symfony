@@ -10,13 +10,11 @@ Ce projet est une application de blog développée avec le framework **Symfony**
 - Affichage d'une liste d'articles publiés par les utilisateurs.
 
 ### Administrateur
-- Gestion des utilisateurs : activation, désactivation, ou suppression de comptes.
 - Gestion globale des articles : modification ou suppression de tout contenu.
 - Tableau de bord dédié pour une vue d'ensemble des activités.
 
 ### Articles
 - Création d'articles avec un éditeur enrichi **TinyMCE** (support des mises en forme, images, liens, etc.).
-- Liste paginée des articles avec aperçu.
 - Consultation détaillée d'un article individuel.
 
 ## Installation
