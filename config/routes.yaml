@@ -1,0 +1,13 @@
+controllers:
+  resource:
+    path: ../src/Controller/
+    namespace: App\Controller
+  type: attribute
+
+app_home:
+  path: /
+  controller: App\Controller\HomeController::index
+  methods: [GET]
+creation_blog:
+  path: /creation-blog/{id}
+  controller: App\Controller\BlogController::createBlog

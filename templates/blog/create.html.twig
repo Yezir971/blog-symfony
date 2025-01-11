@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}création blog | comment faire ? {% endblock %}
+
+{% block body %}
+
+<!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+
+
+  <script>
+    tinymce.init({
+      selector: 'textarea',
+      content_css: 'document',
+      height: 680,
+      skin: 'oxide-dark',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+      toolbar: 'spellchecker language | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | forecolor backcolor | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat | link image | print preview media ',
+      content_langs: [
+        { title: 'French', code: 'fr' },
+        { title: 'English', code: 'en' },
+        { title: 'Spanish', code: 'es' },
+        { title: 'German', code: 'de' },
+        { title: 'Portuguese', code: 'pt' },
+        { title: 'Chinese', code: 'zh' },
+      ],
+      // plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+      // toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media | forecolor backcolor emoticons',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+      ],
+      ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+    });
+    // let text = document.getElementById('#articles_comment');
+    // text.style.display="block";
+    // text.innerHTML ="james";
+  </script>
+
+
+
+
+{% if idUrl == idUser.id %}
+<div class="container mt-1">
+  {{ form_start(form, {'attr': {'novalidate': ''}}) }}
+        {{ form_errors(form) }}
+        <div class="d-flex justify-content-between">
+          {{ form_row(form.title) }}
+          {{ form_row(form.author) }}
+          <div class="mt-4">
+            {{ form_row(form.Publier) }}
+          </div>
+        </div>
+        {# <textarea id="montiniy"></textarea> #}
+
+        {# {{ form_widget(form.comment) }} #}
+      {{ form_end(form) }}
+  </div>
+{% endif %}
+<div class="container mb-3">
+  <a class="d-flex justify-content-center align-items-center btn btn-success" href="{{ path('user_page') }}">Home</a>
+</div>
+
+  
+
+
+{% endblock %}

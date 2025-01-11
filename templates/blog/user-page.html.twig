@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}page user{% endblock %}
+
+{% block body %}
+{{ include('template-parts/general-notifs.html.twig') }}
+<div class="container">
+    <h1 >C'est ici que tu vas pouvoir voir les blogs des autres ou créer ton propre blog</h1>
+
+    <div class="d-flex justify-content-between">
+        {% if app.user %}
+            <div>
+                <p>vous êtes connecter avec l'adress email: {{ app.user.userIdentifier }}<p>
+            </div>
+            <div>
+                <p>Votre role est : {{ app.user.roles[0] == "ROLE_USER" ? "Utilisateur" : "Admin" }}<p>
+            </div>
+        {% endif %}
+    </div>
+    <h2>Tout les blogs</h2> 
+    <ul id="task-list" class="d-flex justify-content-center">
+          {% if article == null %}
+             <li class="d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="assets/img/logo_blog.webp" alt="ceci est ma cover">
+                    <div class="card-body">
+                        <h2 class="card-title">Titre : Rédiger vos meilleurs articles</h2>
+                        <h3 card-subtitle mb-2>Auteur : Sexy James</h3>
+                        <p class="card-text articleTranslate">Avec Comment faire devenez les pros de la rédaction facilement et rapidement</p>
+                        <p class="mt-5">Publié le : 22/06/2000</p>
+                    </div>
+                    <a href="{{ path('app_login') }}" class="btn btn-success">Voir</a>
+                </div>
+            </li>
+        {% endif %}
+        {% for articl in article %}
+            <li>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="assets/img/logo_blog.webp" alt="ceci est ma cover">
+                    <div class="card-body">
+                        <h2 class="card-title">Titre : {{ articl.title }}</h2>
+                        <h3 card-subtitle mb-2>Auteur : {{ articl.author }}</h3>
+                        <p class="card-text articleTranslate">{{ articl.comment | slice(0, 80) ~ "..." }}</p>
+                        <p class="mt-5">Publié le : {{ articl.publicationDate | date('d-m-Y') }} à {{articl.publicationDate |  date('H:i:s')  }}</p>
+                    </div>
+
+                    <div clas="card-footer">
+                        <div class="d-flex justify-content-around mb-2">
+                            {% if app.user.roles[0] == "ROLE_ADMIN" %}
+                                <a href="{{ path('supprimer_page_blog', {'id' : articl.id}) }}" class="btn btn-danger mb-2">Supprimer</a>
+                                <a href="{{ path('page_blog', {'id' : articl.id}) }}" class="btn btn-success mb-2">Voir</a>
+                            {% endif %}
+                            {% if app.user.roles[0] == "ROLE_USER" %}
+                                <a href="{{ path('page_blog', {'id' : articl.id}) }}" class="btn btn-success mb-2">Voir</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {% endfor %} 
+    </ul>
+
+</div>
+
+
+
+
+
+{% endblock %}

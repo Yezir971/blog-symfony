@@ -1,0 +1,17 @@
+<nav class="navbar bg-dark bg-gradient">
+    <div class="container-fluid d-flex">
+        <img src="{{ asset('assets/img/logo_blog.webp') }}" alt="login" class="logoNav">
+        {% if app.user == null %}
+            <div>
+                <a href="{{ path('app_login') }}" class="btn btn-success">Connexion</a>
+                <a href="{{ path('app_register') }}" class="btn btn-secondary">inscription</a>
+            </div>
+        {% endif %}
+        {% if app.user %}
+           <div >
+                <a href="{{ path('app_logout') }}" class="btn btn-danger">Se déconnecter</a>
+                <a href="{{ path('create', {'id': app.user.id }) }}" class="btn btn-success">Faire un blog</a>
+            </div>
+        {% endif %}
+    </div>
+</nav>

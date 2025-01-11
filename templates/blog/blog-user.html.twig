@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}blog utilisateurs{% endblock %}
+
+{% block body %}
+    <div class="d-flex align-items-center justify-content-end mt-3 m-3">
+        <a href="{{ path('user_page') }}" class="btn btn-success">home</a>
+    </div>
+    <div class="container">
+
+        <h1>Titre : {{ blog.title }}</h1>
+        <h2>Auteur : {{ blog.author }}</h2>
+        <p class="articleTranslate">{{ blog.comment }}</p>
+        <p class="mt-5">Publié le : {{ blog.publicationDate | date('d-m-Y') }} à {{blog.publicationDate |  date('H:i:s')  }}</p>
+    </div>
+
+
+
+{% endblock %}
